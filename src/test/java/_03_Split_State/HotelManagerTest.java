@@ -53,22 +53,29 @@ class HotelManagerTest {
     }
 
     @Test
-    void testGetPrettyName_NullHotel() {
-        assertEquals("Unknown Hotel", HotelManager.getPrettyName(null));
+    void testHireNewEmployees_NullHotel() {
+        HotelManager.hireNewEmployees(null, 5);
+        // No exception should be thrown, and no action should be taken.
     }
 
     @Test
-    void testGetPrettyName_NullOrEmptyName() {
-        Hotel hotelWithNullName = new Hotel(null, 10, 3, 10);
-        assertEquals("Unknown Hotel", HotelManager.getPrettyName(hotelWithNullName));
-
-        Hotel hotelWithEmptyName = new Hotel("", 10, 3, 10);
-        assertEquals("Unknown Hotel", HotelManager.getPrettyName(hotelWithEmptyName));
+    void testHireNewEmployees_AddEmployees() {
+        Hotel hotel = new Hotel("Test Hotel", 10, 3, 5);
+        HotelManager.hireNewEmployees(hotel, 3);
+        assertEquals(8, hotel.getEmployees()); // 5 + 3 = 8
     }
 
     @Test
-    void testGetPrettyName_ValidName() {
-        Hotel hotel = new Hotel("Grand Hotel", 10, 3, 10);
-        assertEquals("Grand Hotel", HotelManager.getPrettyName(hotel));
+    void testHireNewEmployees_AddZeroEmployees() {
+        Hotel hotel = new Hotel("Test Hotel", 10, 3, 5);
+        HotelManager.hireNewEmployees(hotel, 0);
+        assertEquals(5, hotel.getEmployees()); // No change
+    }
+
+    @Test
+    void testHireNewEmployees_AddNegativeEmployees() {
+        Hotel hotel = new Hotel("Test Hotel", 10, 3, 5);
+        HotelManager.hireNewEmployees(hotel, -2);
+        assertEquals(3, hotel.getEmployees()); // 5 - 2 = 3
     }
 }

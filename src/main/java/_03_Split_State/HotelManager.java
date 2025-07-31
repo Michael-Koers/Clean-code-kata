@@ -30,11 +30,10 @@ public class HotelManager {
         return rooms * GUESTS_PER_ROOM;
     }
 
-    public static String getPrettyName(Hotel hotel) {
-        if (hotel == null || hotel.getName() == null || hotel.getName().isEmpty()) {
-            return "Unknown Hotel";
+    public static void hireNewEmployees(Hotel hotel, int employees) {
+        if (hotel == null) {
+            return;
         }
-
-        return hotel.getName();
+        hotel.setEmployees(hotel.getEmployees() + employees);
     }
 }
