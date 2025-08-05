@@ -58,6 +58,10 @@ Hierdoor wordt het duidelijker wat de verwachte input is en wat er gebeurt als d
 
 # Opdracht
 
-Verwijder alle nesting uit StringUtils zodat alle unit-testen nog steeds slagen.
+Verwijder alle nesting uit StringUtils terwijl alle unit-testen blijven slagen.
 
-**Extra uitdaging**: gebruik alleen Intellij's refactorings en geen handmatige aanpassingen (⌥ + ENTER).
+**Extra uitdaging**: Doe geen handmatige aanpassingen, maar gebruik IntelliJ's ingebouwde refactor methodes, zoals Quick-Actions (⌥ + ENTER).
+
+**Optioneel**: Zet "Rerun Automatically" aan in de test-runner, zodat je direct feedback krijgt na een refactorslag
+
+![img.png](img.png)

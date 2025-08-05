@@ -11,3 +11,10 @@ Denk aan:
 ```java
 
 ```
+
+
+# Opdracht
+
+Loop het commentaar in ```Container.java``` langs en refactor waar nodig, denk aan bovenstaande voorbeelden.
+
+**Extra uitdaging**: Doe geen handmatige aanpassingen, maar gebruik IntelliJ's ingebouwde refactor methodes, zoals 'Rename Variable' (۩ + F6) en 'Change Signature' (⌘ + F6).

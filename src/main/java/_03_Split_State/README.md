@@ -16,9 +16,11 @@ Het liefst wil je de state en gedrag combineren in je domein object, voordelen h
 - Je kunt de state en gedrag beter testen / onderhouden / uitbreiden, omdat ze samen in één object zitten.
 - Technische bonus: Hotel kan een record worden, voor minder boilerplate code en immutability bij default.
 
-Met bovenstaande verbeteringen beweeg je meer naar een ['Rich Domain Model'](https://medium.com/@aboutcoding/rich-domain-models-22f176ad6f1b), waarbij domein objecten zowel state als gedrag bevatten.'
+Met bovenstaande verbeteringen beweeg je meer naar een ['Rich Domain Model'](https://medium.com/@aboutcoding/rich-domain-models-22f176ad6f1b), waarbij domein objecten zowel state als gedrag bevatten.
 
 
 # Opdracht
 
 Voeg de data van Hotel en de business logica van HotelManager samen in één klasse.
+
+**Extra uitdaging**: probeer zoveel mogelijk IntelliJ's ingebouwde refactor methodes te gebruiken
