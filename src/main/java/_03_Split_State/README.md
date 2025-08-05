@@ -23,4 +23,4 @@ Met bovenstaande verbeteringen beweeg je meer naar een ['Rich Domain Model'](htt
 
 Voeg de data van Hotel en de business logica van HotelManager samen in één klasse.
 
-**Extra uitdaging**: probeer zoveel mogelijk IntelliJ's ingebouwde refactor methodes te gebruiken
+**Extra uitdaging**: Doe geen handmatige aanpassingen, maar gebruik IntelliJ's ingebouwde refactor methodes, zoals: 'Convert to Instance Method' en 'Move Members' (F6)

@@ -54,8 +54,9 @@ class HotelManagerTest {
 
     @Test
     void testHireNewEmployees_NullHotel() {
-        HotelManager.hireNewEmployees(null, 5);
-        // No exception should be thrown, and no action should be taken.
+        assertThrows(IllegalArgumentException.class, () -> {
+            HotelManager.hireNewEmployees(null, 5);
+        });
     }
 
     @Test

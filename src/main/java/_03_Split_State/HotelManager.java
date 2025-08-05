@@ -32,7 +32,7 @@ public class HotelManager {
 
     public static void hireNewEmployees(Hotel hotel, int employees) {
         if (hotel == null) {
-            return;
+            throw new IllegalArgumentException("Hotel cannot be null");
         }
         hotel.setEmployees(hotel.getEmployees() + employees);
     }
