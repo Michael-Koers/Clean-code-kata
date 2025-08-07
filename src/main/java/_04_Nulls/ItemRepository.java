@@ -23,6 +23,17 @@ public class ItemRepository {
                 .orElse(null);
     }
 
+    public double findItemDiscountById(int id) {
+        var item=  items.stream()
+                .filter(i -> i.getId() == id)
+                .map(Item::getDiscount)
+                .filter(discount -> discount != null) // Ensure discount is not null
+                .findFirst();
+
+        return item.orElse(null);
+
+    }
+
     public List<Item> findByDiscountEqualsOrHigher(double discount) {
         return items.stream()
                 .filter(item -> item.getDiscount() != null) // Ensure discount is not null

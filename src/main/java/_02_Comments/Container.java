@@ -11,13 +11,16 @@ public class Container {
     public static final double _1_16 = 1.16d;
 
     // List of all items in this order
-    // Keep sorted!
-    List<ContainerObject> list = new ArrayList<>();
+    // Keep sorted! See contains()
+    private final List<ContainerObject> list = new ArrayList<>();
 
     // Adds new item to the order
     void addToOrder(ContainerObject containerObject) {
         this.list.add(containerObject);
         Collections.sort(this.list);
+
+        // Old way of sorting our list
+//        this.list = this.list.stream().sorted().toList()
     }
 
     // Checks if the order contains a specific item
