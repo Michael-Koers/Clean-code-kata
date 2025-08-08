@@ -4,8 +4,8 @@ import java.util.List;
 
 public class OrderProcessor {
 
-    public static final int STOCK_MINIMUM = 5;
-    public static final double DISCOUNT_THRESHOLD = 3;
+    private static final int STOCK_MINIMUM = 5;
+    private static final double DISCOUNT_THRESHOLD = 3;
     private static final double DISCOUNT_RATE = 0.1;
 
     public static void main(String[] args) {

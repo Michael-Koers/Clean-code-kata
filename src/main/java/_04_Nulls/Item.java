@@ -12,7 +12,7 @@ public class Item {
     private final Double price;
     private final Double discount;
 
-    public double getPriceWithDiscount() {
+    public Double getPriceWithDiscount() {
         if (discount == null) {
             return price;
         }

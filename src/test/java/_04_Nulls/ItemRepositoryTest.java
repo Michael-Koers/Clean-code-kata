@@ -8,7 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ItemRepositoryTest {
 
-    private final ItemRepository repository = new ItemRepository();
+    private final List<Item> items = List.of(
+            new Item(1, "Apple", 10.0, null),
+            new Item(2, "Banana", 20.0, null),
+            new Item(3, "Strawberry", 30.0, 5.0),
+            new Item(4, null, 0.0, 0.0)
+    );
+    private final ItemRepository repository = new ItemRepository(items);
 
     @Test
     void testFindAll() {
@@ -46,5 +52,23 @@ class ItemRepositoryTest {
     void testFindByDiscountEqualsOrHigher_LowerThreshold() {
         List<Item> items = repository.findByDiscountEqualsOrHigher(0.0);
         assertEquals(2, items.size());
+    }
+
+    @Test
+    void testFindAll_WithEmptyList() {
+        ItemRepository emptyRepository = new ItemRepository(null);
+        List<Item> items = emptyRepository.findAll();
+        assertNull(items);
+    }
+
+    @Test
+    void testCount_WithItems() {
+        assertEquals(4, repository.count());
+    }
+
+    @Test
+    void testCount_WithNullList() {
+        ItemRepository emptyRepository = new ItemRepository(null);
+        assertEquals(0, emptyRepository.count());
     }
 }

@@ -4,16 +4,18 @@ import java.util.List;
 
 public class ItemRepository {
 
-    // Simulating a database with a static list of items
-    List<Item> items = List.of(
-            new Item(1, "Apple", 10.0, null),
-            new Item(2, "Banana", 20.0, null),
-            new Item(3, "Strawberry", 30.0, 5.0),
-            new Item(4, null, 0.0, 0.0)
-    );
+    private final List<Item> items;
+
+    public ItemRepository(List<Item> items) {
+        this.items = items;
+    }
 
     public List<Item> findAll() {
-        return items;
+        return this.items;
+    }
+
+    public int count() {
+        return items != null ? items.size() : 0;
     }
 
     public Item findById(int id) {
@@ -23,8 +25,8 @@ public class ItemRepository {
                 .orElse(null);
     }
 
-    public double findItemDiscountById(int id) {
-        var item=  items.stream()
+    public Double findItemDiscountById(int id) {
+        var item = items.stream()
                 .filter(i -> i.getId() == id)
                 .map(Item::getDiscount)
                 .filter(discount -> discount != null) // Ensure discount is not null
