@@ -1,12 +1,15 @@
 package _04_Nulls;
 
-import lombok.Getter;
-
 public class Item {
 
+    // Should never be null
     private final int id;
+    // Should never be null
     private final String name;
+    // Should never be null
     private final Double price;
+    // Discount in euros, not percentage
+    // Not always present
     private final Double discount;
 
     public Item(final int id, final String name, final Double price, final Double discount) {

@@ -1,15 +1,26 @@
 # Avoid returning null
-Wanneer methodes geen waarde hebben om terug te geven, wordt er nog wel eens gekozen om `null` terug te geven. 
-Dit zorgt echter voor problemen, omdat de aanroepende code dan moet controleren of de waarde `null` is voordat deze gebruikt kan worden.
+When methods have no value to return, sometimes `null` is returned.
+However, this causes problems, because the calling code then has to check whether the value is `null` before it can be used.
 
-Dus het introduceren van een `return null` sijpelt door in de rest van de code. 
-Daarnaast is het ook nog eens foutgevoelig, als iemand vergeet om te controleren op `null` en de waarde toch gebruikt, dan kan dit leiden tot een `NullPointerException`.
+So introducing a `return null` seeps through into the rest of the code.
+Additionally, it is error-prone: if someone forgets to check for `null` and still uses the value, this can lead to a `NullPointerException`.
 
-In plaats daarvan is het vaak* beter om een van de volgende opties te gebruiken:
-- Een lege collectie teruggeven, zoals een lege lijst of set.
-- Een optionele waarde teruggeven, zoals `Optional<T>`.
-- Een default waarde teruggeven, zoals een lege string of een standaardwaarde voor een primitief type.
+Instead, it is often* better to use one of the following options:
+- Return an empty collection, such as an empty list or set.
+- Return an optional value, such as `Optional<T>`.
+- Return a default value, such as an empty string or a default value for a primitive type.
 
 
-* Reden waarom ik vaak zeg, is omdat `null` soms functionele betekenis heeft, zoals een keuze die nog niet gemaakt is. 
-Als je een default waarde teruggeeft, hoe onderscheid je dan nog dat er geen keuze is gemaakt?ß
+\* The reason I say often is because `null` sometimes has functional meaning, such as a choice that has not yet been made.
+If you return a default value, how do you distinguish that no choice has been made?
+
+
+# Assignment
+
+Refactor Item and ItemRepository so that all null checks and returns are removed. Note that some unit tests might require small adjustments.
+
+Try to use the following techniques:
+- Optional<T>
+- Empty collections
+- Default values
+- 

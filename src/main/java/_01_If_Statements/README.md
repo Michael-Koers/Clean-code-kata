@@ -1,46 +1,46 @@
 # If-statements
-Als programmeurs maken we dagelijks gebruik van if-statements, en daar is niets mis mee, maar het wordt een probleem wanneer deze sub-optimaal worden ingezet.
-Wat je nog wel eens voorbij ziet komen zijn complexe geneste if-statements die moeilijk te lezen zijn, of zelfs onleesbaar worden. 
+As programmers, we use if-statements daily, and there's nothing wrong with that, but it becomes a problem when they are used suboptimally.
+What you sometimes see are complex nested if-statements that are hard to read, or even become unreadable.
 
-Met nesting bedoelen we dat er een if-statement in een andere if-statement zit. Wat het lastig maakt is wanneer logica op verschillende niveau's ingesprongen is, waardoor het moeilijk te lezen is.
-De valkuil is om veel/alle logica in een if-statement te stoppen, wat ervoor zorgt dat alle logica indented is. Dat is niet netjes.
+What is nesting? Nesting is placing an if-statement inside another if-statement. Logic indented at different levels makes it more difficult to read the code.
+The pitfall is to put a lot or all logic inside an if-statement, which causes all logic to be indented. That's not neat.
 
-Wat je hier tegen kunt doen is de if-statement inverten en/of het introduceren van guard-clauses.
+What you can do about this is invert the if-statement and/or introduce guard-clauses.
 
-Voorbeeld van inverten:
+Example of inverting:
 
 ```java
 if (condition) {
-    // Heel
-    // veel
-    // regels    
-    // business    
-    // logica    
+    // Many
+    // lines
+    // of
+    // business
+    // logic
 } else {
    return ?;
 }
 ```
 
-omzetten naar:
+converted to:
 
 ```java
 if (!condition) {
    return ?;
 }
-// Heel
-// veel
-// regels    
-// business    
-// logica    
+// Many
+// lines
+// of 
+// business
+// logic
 ```
 
-Op deze manier voorkom je dat alle business logica ingesprongen is. Wat je in sommige gevallen waarschijnlijk zult moeten gebruiken zijn Guard-clauses.
+This way you prevent all business logic from being indented. In some cases, you will probably need to use guard-clauses.
 
 # Guard-clauses
-Guard clauses zijn conditional statements in het begin van een methode, die foutieve input/situatie's meteen afhandelen.
-Je hebt ze vast wel eens gezien als ```Guard.argumentNotNull()``` of ```ObjectUtils.requireNonEmpty()```, je kunt ze in allerlei formaten maken.
+Guard clauses are conditional statements at the beginning of a method that immediately handle invalid input or situations.
+You've probably seen them as ```Guard.argumentNotNull()``` or ```ObjectUtils.requireNonEmpty()```, but you can make them in all kinds of formats.
 
-Voorbeeld:
+Example:
 
 ```java
 public void process(String input) {
@@ -48,20 +48,21 @@ public void process(String input) {
         throw new IllegalArgumentException("Input cannot be null or empty");
     }
     
-    // Verwerk de input
+    // Process the input
 }
 ```
 
-Het voordeel van guard-clauses is dat ze de leesbaarheid van de code verbeteren door de foutafhandelingslogica te scheiden van de hoofdlogica van de methode. 
-Hierdoor wordt het duidelijker wat de verwachte input is en wat er gebeurt als die input niet aan de verwachtingen voldoet.
+The advantage of guard-clauses is that they improve code readability by separating error handling logic from the main logic of the method.
+This makes it clearer what the expected input is and what happens if that input does not meet expectations.
 
 
-# Opdracht
+# Assignment
 
-Verwijder alle nesting uit StringUtils terwijl alle unit-testen blijven slagen.
+Remove all nesting from StringUtils while keeping all unit tests green.
 
-**Extra uitdaging**: Doe geen handmatige aanpassingen, maar gebruik IntelliJ's ingebouwde refactor methodes, zoals Quick-Actions (⌥ + ENTER).
+**Extra challenge**: Do not make manual changes, but use IntelliJ's built-in refactor methods, such as Quick-Actions (⌥ + ENTER).
 
-**Optioneel**: Zet "Rerun Automatically" aan in de test-runner, zodat je direct feedback krijgt na een refactorslag
+**Optional**: Turn on "Rerun Automatically" in the test runner, so you get immediate feedback after a refactor
 
 ![img.png](img.png)
+
