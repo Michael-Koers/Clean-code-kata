@@ -1,4 +1,4 @@
-# Split state
+# Anemic Domain Model
 
 What you sometimes see happening in software is that the state and the 'behavior' of an object are spread across multiple classes.
 In this kata, you see that the state of a Hotel is in the Hotel object, but the behavior of Hotel is in a HotelManager.

@@ -1,4 +1,4 @@
-package _03_Split_State;
+package _03_Anemic_Domain_Model;
 
 import org.junit.jupiter.api.Test;
 
