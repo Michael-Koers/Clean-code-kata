@@ -11,7 +11,7 @@ Instead, it is often* better to use one of the following options:
 - Return a default value, such as an empty string or a default value for a primitive type.
 
 
-\* The reason I say often is because `null` sometimes has functional meaning, such as a choice that has not yet been made.
+\* The reason I say often is `null` sometimes has functional meaning, such as a choice that has not yet been made.
 If you return a default value, how do you distinguish that no choice has been made?
 
 
@@ -23,4 +23,3 @@ Try to use the following techniques:
 - Optional<T>
 - Empty collections
 - Default values
-- 
