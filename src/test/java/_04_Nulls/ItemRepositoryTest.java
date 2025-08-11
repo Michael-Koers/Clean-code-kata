@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemRepositoryTest {
 
     private final List<Item> items = List.of(
-            new Item(1, "Apple", 10.0, null),
-            new Item(2, "Banana", 20.0, null),
-            new Item(3, "Strawberry", 30.0, 5.0),
-            new Item(4, null, 0.0, 0.0)
+            new Item(1, "Apple", 10.0),
+            new Item(2, "Banana", 20.0),
+            new Item(3, "Strawberry", 30.0, 8.0),
+            new Item(4, "Potato", 0.0, 2.0)
     );
     private final ItemRepository repository = new ItemRepository(items);
 
@@ -24,15 +24,17 @@ class ItemRepositoryTest {
 
     @Test
     void testFindById_ExistingId() {
-        Item item = repository.findById(1);
+        var item = repository.findById(1);
         assertNotNull(item);
-        assertEquals(1, item.getId());
+        assertTrue(item.isPresent());
+        assertEquals(1, item.get().getId());
     }
 
     @Test
     void testFindById_NonExistingId() {
-        Item item = repository.findById(999);
-        assertNull(item);
+        var item = repository.findById(999);
+        assertNotNull(item);
+        assertFalse(item.isPresent());
     }
 
     @Test
@@ -51,14 +53,14 @@ class ItemRepositoryTest {
     @Test
     void testFindByDiscountEqualsOrHigher_LowerThreshold() {
         List<Item> items = repository.findByDiscountEqualsOrHigher(0.0);
-        assertEquals(2, items.size());
+        assertEquals(4, items.size());
     }
 
     @Test
     void testFindAll_WithEmptyList() {
         ItemRepository emptyRepository = new ItemRepository(null);
         List<Item> items = emptyRepository.findAll();
-        assertNull(items);
+        assertEquals(0, items.size());
     }
 
     @Test

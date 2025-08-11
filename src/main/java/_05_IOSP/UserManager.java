@@ -2,24 +2,31 @@ package _05_IOSP;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserManager {
 
     public static User createUser(String username, List<String> roles, List<String> groups) {
         System.out.println("Start creating user: " + username);
-        var newRoles = new ArrayList<Role>();
+
         var newGroups = createGroups(groups);
-        for (final String role : roles) {
-            newRoles.add(createRole(role));
-        }
-        username = sanitizeName(username);
-        var user = new User(username, newRoles, newGroups);
+        var newRoles = createRoles(roles);
+        var user = createUser(username, newRoles, newGroups);
+
         System.out.println("User created: " + user);
         return user;
     }
 
-    private static Role createRole(final String role) {
-        return new Role(sanitizeName(role));
+    private static ArrayList<Role> createRoles(final List<String> roles) {
+        return roles.stream()
+                .map(UserManager::sanitizeName)
+                .map(Role::new)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    private static User createUser(String username, final ArrayList<Role> newRoles, final List<Group> newGroups) {
+        username = sanitizeName(username);
+        return new User(username, newRoles, newGroups);
     }
 
     private static String sanitizeName(String name) {
@@ -34,8 +41,7 @@ public class UserManager {
 
     private static List<Group> createGroups(List<String> groupNames) {
         return groupNames.stream()
-                .filter(name -> name != null && !name.isBlank())
-                .map(name -> sanitizeName(name))
+                .map(UserManager::sanitizeName)
                 .map(Group::new)
                 .toList();
     }

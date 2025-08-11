@@ -3,9 +3,12 @@ package _03_Anemic_Domain_Model;
 
 public class Hotel {
 
-    private String name;
-    private int rooms;
-    private int floors;
+    private static final int REQUIRED_EMPLOYEES_PER_FLOOR = 3;
+    private static final int GUESTS_PER_ROOM = 2;
+
+    private final String name;
+    private final int rooms;
+    private final int floors;
     private int employees;
 
     public Hotel(final String name, final int rooms, final int floors, final int employees) {
@@ -15,35 +18,25 @@ public class Hotel {
         this.employees = employees;
     }
 
-    public String getName() {
-        return name;
+    public void hireNewEmployees(int employees) {
+        this.employees = this.employees + employees;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public int calculateGuestCapacity() {
+        if (rooms <= 0) {
+            return 0;
+        }
+        return rooms * GUESTS_PER_ROOM;
     }
 
-    public int getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(final int rooms) {
-        this.rooms = rooms;
-    }
-
-    public int getFloors() {
-        return floors;
-    }
-
-    public void setFloors(final int floors) {
-        this.floors = floors;
+    public boolean hasEnoughEmployees() {
+        if (floors <= 0 || employees <= 0) {
+            return false;
+        }
+        return employees >= (floors * REQUIRED_EMPLOYEES_PER_FLOOR);
     }
 
     public int getEmployees() {
         return employees;
-    }
-
-    public void setEmployees(final int employees) {
-        this.employees = employees;
     }
 }

@@ -1,18 +1,23 @@
 package _04_Nulls;
 
+import java.util.Objects;
+
 public class Item {
 
-    // Should never be null
     private final int id;
-    // Should never be null
     private final String name;
-    // Should never be null
     private final Double price;
-    // Discount in euros, not percentage
-    // Not always present
     private final Double discount;
 
+    public Item(final int id, final String name, final Double price) {
+        this(id, name, price, 0d);
+    }
+
     public Item(final int id, final String name, final Double price, final Double discount) {
+        Objects.requireNonNull(name, "name must not be null");
+        Objects.requireNonNull(price, "price must not be null");
+        Objects.requireNonNull(discount, "discount must not be null");
+
         this.id = id;
         this.name = name;
         this.price = price;
@@ -20,17 +25,10 @@ public class Item {
     }
 
     public Double getPriceWithDiscount() {
-        if (discount == null) {
-            return price;
-        }
         return price - discount;
     }
 
     public String getName() {
-        if (name == null) {
-            return null;
-        }
-
         return name.toLowerCase();
     }
 

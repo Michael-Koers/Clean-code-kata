@@ -93,11 +93,10 @@ class UserManagerTest {
         List<String> groups = new ArrayList<>();
         groups.add(null);
 
-        User user = UserManager.createUser("JaneDoe", roles, groups);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            UserManager.createUser("JaneDoe", roles, groups);
+        });
 
-        assertEquals(2, user.roles().size());
-        assertEquals("admin", user.roles().get(0).name());
-        assertEquals("user", user.roles().get(1).name());
-        assertEquals(0, user.groups().size());
+        assertEquals("Name cannot be null or empty", exception.getMessage());
     }
 }

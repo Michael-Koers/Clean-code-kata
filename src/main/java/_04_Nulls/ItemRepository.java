@@ -1,13 +1,19 @@
 package _04_Nulls;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ItemRepository {
 
     private final List<Item> items;
 
     public ItemRepository(List<Item> items) {
-        this.items = items;
+        if(items == null) {
+            this.items = new ArrayList<>();
+        } else {
+            this.items = new ArrayList<>(items);
+        }
     }
 
     public List<Item> findAll() {
@@ -15,30 +21,17 @@ public class ItemRepository {
     }
 
     public int count() {
-        return items != null ? items.size() : 0;
+        return items.size();
     }
 
-    public Item findById(int id) {
+    public Optional<Item> findById(int id) {
         return items.stream()
                 .filter(item -> item.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public Double findItemDiscountById(int id) {
-        var item = items.stream()
-                .filter(i -> i.getId() == id)
-                .map(Item::getDiscount)
-                .filter(discount -> discount != null) // Ensure discount is not null
                 .findFirst();
-
-        return item.orElse(null);
-
     }
 
     public List<Item> findByDiscountEqualsOrHigher(double discount) {
         return items.stream()
-                .filter(item -> item.getDiscount() != null) // Ensure discount is not null
                 .filter(item -> item.getDiscount() >= discount)
                 .toList();
     }
