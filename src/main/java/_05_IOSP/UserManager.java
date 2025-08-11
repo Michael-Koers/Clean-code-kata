@@ -9,17 +9,13 @@ public class UserManager {
         System.out.println("Start creating user: " + username);
         var newRoles = new ArrayList<Role>();
         var newGroups = createGroups(groups);
-        extracted(roles, newRoles);
+        for (final String role : roles) {
+            newRoles.add(createRole(role));
+        }
         username = sanitizeName(username);
         var user = new User(username, newRoles, newGroups);
         System.out.println("User created: " + user);
         return user;
-    }
-
-    private static void extracted(final List<String> roles, final ArrayList<Role> newRoles) {
-        for (final String role : roles) {
-            newRoles.add(createRole(role));
-        }
     }
 
     private static Role createRole(final String role) {
