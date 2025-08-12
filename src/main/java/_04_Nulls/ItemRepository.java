@@ -6,14 +6,10 @@ import java.util.Optional;
 
 public class ItemRepository {
 
-    private final List<Item> items;
+    private final List<Item> items = new ArrayList<>();
 
     public ItemRepository(List<Item> items) {
-        if(items == null) {
-            this.items = new ArrayList<>();
-        } else {
-            this.items = new ArrayList<>(items);
-        }
+        if(items != null) this.items.addAll(items);
     }
 
     public List<Item> findAll() {
