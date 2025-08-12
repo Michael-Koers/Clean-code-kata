@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UserManager {
 
-    public static User createUser(String username, List<String> roles, List<String> groups) {
+    public static User createNewUser(String username, List<String> roles, List<String> groups) {
         System.out.println("Start creating user: " + username);
         var newRoles = new ArrayList<Role>();
         var newGroups = createGroups(groups);
