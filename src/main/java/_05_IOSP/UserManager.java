@@ -1,12 +1,10 @@
 package _05_IOSP;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserManager {
 
-    public static User createUser(String username, List<String> roles, List<String> groups) {
+    public static User createNewUser(String username, List<String> roles, List<String> groups) {
         System.out.println("Start creating user: " + username);
 
         var newGroups = createGroups(groups);
@@ -17,14 +15,14 @@ public class UserManager {
         return user;
     }
 
-    private static ArrayList<Role> createRoles(final List<String> roles) {
+    private static List<Role> createRoles(final List<String> roles) {
         return roles.stream()
                 .map(UserManager::sanitizeName)
                 .map(Role::new)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .toList();
     }
 
-    private static User createUser(String username, final ArrayList<Role> newRoles, final List<Group> newGroups) {
+    private static User createUser(String username, final List<Role> newRoles, final List<Group> newGroups) {
         username = sanitizeName(username);
         return new User(username, newRoles, newGroups);
     }

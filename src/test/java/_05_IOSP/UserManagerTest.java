@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserManagerTest {
 
     @Test
-    void testCreateUser_validInput() {
+    void testCreateNewUser_validInput() {
         List<String> roles = List.of("Admin", "User");
         List<String> groups = List.of("Developer", "Tester");
-        User user = UserManager.createUser("JohnDoe", roles, groups);
+        User user = UserManager.createNewUser("JohnDoe", roles, groups);
 
         assertEquals("johndoe", user.username());
         assertEquals(2, user.roles().size());
@@ -25,46 +25,46 @@ class UserManagerTest {
     }
 
     @Test
-    void testCreateUser_invalidUsername_null() {
+    void testCreateNewUser_invalidUsername_null() {
         List<String> roles = List.of("Admin");
         List<String> groups = List.of("Developer");
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            UserManager.createUser(null, roles, groups);
+            UserManager.createNewUser(null, roles, groups);
         });
 
         assertEquals("Name cannot be null or empty", exception.getMessage());
     }
 
     @Test
-    void testCreateUser_invalidUsername_empty() {
+    void testCreateNewUser_invalidUsername_empty() {
         List<String> roles = List.of("Admin");
         List<String> groups = List.of("Developer");
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            UserManager.createUser("   ", roles, groups);
+            UserManager.createNewUser("   ", roles, groups);
         });
 
         assertEquals("Name cannot be null or empty", exception.getMessage());
     }
 
     @Test
-    void testCreateUser_invalidUsername_tooLong() {
+    void testCreateNewUser_invalidUsername_tooLong() {
         List<String> roles = List.of("Admin");
         List<String> groups = List.of("Developer");
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            UserManager.createUser("ThisUsernameIsWayTooLongToBeValid", roles, groups);
+            UserManager.createNewUser("ThisUsernameIsWayTooLongToBeValid", roles, groups);
         });
 
         assertEquals("Name cannot be longer than 20 characters", exception.getMessage());
     }
 
     @Test
-    void testCreateUser_rolesAndGroups_validInput() {
+    void testCreateNewUser_rolesAndGroups_validInput() {
         List<String> roles = List.of("Admin", "User");
         List<String> groups = List.of("Developer", "Tester");
-        User user = UserManager.createUser("JaneDoe", roles, groups);
+        User user = UserManager.createNewUser("JaneDoe", roles, groups);
 
         assertEquals(2, user.roles().size());
         assertEquals("admin", user.roles().get(0).name());
@@ -75,26 +75,26 @@ class UserManagerTest {
     }
 
     @Test
-    void testCreateUser_rolesAndGroups_invalidRoles() {
+    void testCreateNewUser_rolesAndGroups_invalidRoles() {
         List<String> roles = new ArrayList<>();
         roles.add(null);
         List<String> groups = List.of("Developer");
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            UserManager.createUser("JaneDoe", roles, groups);
+            UserManager.createNewUser("JaneDoe", roles, groups);
         });
 
         assertEquals("Name cannot be null or empty", exception.getMessage());
     }
 
     @Test
-    void testCreateUser_rolesAndGroups_invalidGroup() {
+    void testCreateNewUser_rolesAndGroups_invalidGroup() {
         List<String> roles = List.of("Admin", "User");
         List<String> groups = new ArrayList<>();
         groups.add(null);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            UserManager.createUser("JaneDoe", roles, groups);
+            UserManager.createNewUser("JaneDoe", roles, groups);
         });
 
         assertEquals("Name cannot be null or empty", exception.getMessage());
